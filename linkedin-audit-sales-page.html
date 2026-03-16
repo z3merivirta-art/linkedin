@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Audit & Revenue Roadmap — Founding Member Offer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #112040;
+    --blue: #1B4FD8;
+    --blue-light: #2563EB;
+    --gold: #E8C76A;
+    --gold-light: #F5DC8E;
+    --white: #FAFAF8;
+    --off-white: #F0EDE6;
+    --gray: #8A9BB5;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(ellipse, rgba(27,79,216,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(212,168,71,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .founding-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212,168,71,0.12);
+    border: 1px solid rgba(212,168,71,0.3);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .founding-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+    animation: fadeDown 0.7s ease 0.1s both;
+  }
+
+  .hero-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(32px, 5vw, 62px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--white);
+    max-width: 900px;
+    margin-bottom: 12px;
+    animation: fadeDown 0.7s ease 0.15s both;
+  }
+
+  .hero-title em {
+    font-style: normal; font-weight: 800; color: var(--gold-light);
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(15px, 1.6vw, 17px);
+    color: var(--gray);
+    max-width: 560px;
+    line-height: 1.65;
+    margin: 24px auto 48px;
+    animation: fadeDown 0.7s ease 0.25s both;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: fadeDown 0.7s ease 0.35s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--blue);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 18px 40px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(27,79,216,0.4);
+  }
+
+  .btn-primary:hover::before { opacity: 1; }
+
+  .btn-arrow {
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+
+  .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+  .hero-guarantee {
+    font-size: 13px;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-guarantee::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* SOCIAL PROOF BAR */
+  .proof-bar {
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 24px;
+    display: flex;
+    justify-content: center;
+    gap: clamp(32px, 6vw, 80px);
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .proof-stat {
+    text-align: center;
+  }
+
+  .proof-stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .proof-stat-num span {
+    color: var(--gold-light);
+  }
+
+  .proof-stat-label {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container-wide {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* PROBLEM */
+  .problem {
+    padding: 100px 0;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--blue-light);
+  }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.12;
+    color: var(--white);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-title em {
+    font-style: normal; font-weight: 800; color: var(--gold-light);
+    color: var(--gold-light);
+  }
+
+  .body-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #B0BDD4;
+    margin-bottom: 20px;
+  }
+
+  .body-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .highlight-block {
+    background: rgba(27,79,216,0.1);
+    border-left: 3px solid var(--blue);
+    padding: 20px 24px;
+    border-radius: 0 6px 6px 0;
+    margin: 32px 0;
+  }
+
+  .highlight-block p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #C5D3E8;
+    font-style: normal; font-weight: 800; color: var(--gold-light);
+  }
+
+  /* WHAT YOU GET */
+  .what-you-get {
+    padding: 100px 0;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .deliverable-card {
+    background: rgba(255,255,255,0.03);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+
+  .deliverable-card:hover {
+    background: rgba(255,255,255,0.06);
+  }
+
+  .deliverable-num {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .deliverable-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .deliverable-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  .deliverable-value {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--gold-light);
+    background: rgba(212,168,71,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .bonus-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+
+  /* VALUE STACK */
+  .value-stack {
+    padding: 80px 0;
+  }
+
+  .stack-table {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 40px;
+  }
+
+  .stack-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .stack-row:last-child { border-bottom: none; }
+  .stack-row:hover { background: rgba(255,255,255,0.03); }
+
+  .stack-row.total {
+    background: rgba(27,79,216,0.12);
+    border-top: 1px solid rgba(27,79,216,0.3);
+  }
+
+  .stack-row-label {
+    font-size: 15px;
+    color: #C5D3E8;
+  }
+
+  .stack-row.total .stack-row-label {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 16px;
+  }
+
+  .stack-row-value {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+    font-size: 20px;
+    color: var(--gray);
+    text-decoration: line-through;
+    text-decoration-color: rgba(138,155,181,0.4);
+  }
+
+  .stack-row.total .stack-row-value {
+    text-decoration: none;
+    color: var(--gold-light);
+    font-size: 28px;
+  }
+
+  .price-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .price-note strong {
+    color: var(--gold-light);
+  }
+
+  /* PROOF */
+  .proof {
+    padding: 100px 0;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(27,79,216,0.4);
+  }
+
+  .testimonial-result {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+    font-size: 28px;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .testimonial-timeline {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 20px;
+  }
+
+  .testimonial-body {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 20px;
+  }
+
+  .testimonial-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .testimonial-company {
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  /* GUARANTEE */
+  .guarantee {
+    padding: 80px 0;
+  }
+
+  .guarantee-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 56px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .guarantee-icon {
+    width: 72px;
+    height: 72px;
+    background: rgba(212,168,71,0.1);
+    border: 1px solid rgba(212,168,71,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+  }
+
+  .guarantee-title {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+    font-size: 32px;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .guarantee-body {
+    font-size: 16px;
+    color: #B0BDD4;
+    line-height: 1.8;
+  }
+
+  /* WHO IT'S FOR */
+  .who {
+    padding: 100px 0;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .who-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 36px;
+  }
+
+  .who-box.yes { border-color: rgba(27,79,216,0.3); }
+  .who-box.no { border-color: rgba(255,255,255,0.06); }
+
+  .who-box-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .who-box.yes .who-box-title { color: var(--blue-light); }
+  .who-box.no .who-box-title { color: var(--gray); }
+
+  .who-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    color: #B0BDD4;
+    line-height: 1.5;
+  }
+
+  .who-item::before {
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .who-box.yes .who-item::before {
+    content: '✓';
+    color: var(--blue-light);
+  }
+
+  .who-box.no .who-item::before {
+    content: '✕';
+    color: rgba(138,155,181,0.5);
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(27,79,216,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-title {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.1;
+    color: var(--white);
+    max-width: 700px;
+    margin: 0 auto 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .final-cta-title em {
+    font-style: normal; font-weight: 800; color: var(--gold-light);
+    color: var(--gold-light);
+  }
+
+  .final-cta-sub {
+    font-size: 17px;
+    color: var(--gray);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.65;
+  }
+
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-small-text {
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  .cta-small-text span {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .guarantee-box {
+      grid-template-columns: 1fr;
+      padding: 36px 28px;
+    }
+
+    .who-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .proof-bar {
+      gap: 24px;
+    }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="founding-badge">Founding Member Pricing — Limited Access</div>
+  <p class="hero-eyebrow">LinkedIn Audit & Revenue Roadmap</p>
+  <h1 class="hero-title">Find out <em>exactly</em> why your LinkedIn isn't converting. In 60 minutes.</h1>
+  <p class="hero-subtitle">We go through your LinkedIn together, find what's killing your results, and hand you a written roadmap and a custom AI content engine built for your business.</p>
+  <div class="hero-cta-group">
+    <a href="https://calendly.com/timi-inboundleads/dmand-demo" target="_blank" class="btn-primary">
+      Secure Your Founding Member Spot <span class="btn-arrow">→</span>
+    </a>
+    <p class="hero-guarantee">7-day money back guarantee — no conditions</p>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-stat">
+    <div class="proof-stat-num">$50<span>K+</span></div>
+    <div class="proof-stat-label">Closed in 60 days</div>
+  </div>
+  <div class="proof-stat">
+    <div class="proof-stat-num">7</div>
+    <div class="proof-stat-label">Calls from first post</div>
+  </div>
+  <div class="proof-stat">
+    <div class="proof-stat-num">30<span>%</span></div>
+    <div class="proof-stat-label">Outreach reply rate</div>
+  </div>
+  <div class="proof-stat">
+    <div class="proof-stat-num">$25<span>K</span></div>
+    <div class="proof-stat-label">Generated with 200 followers</div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">The Problem</p>
+      <h2 class="section-title">Your competitors are booking calls on LinkedIn <em>right now.</em></h2>
+      <p class="body-text">Most coaches and agency owners try LinkedIn once. They post for a few weeks, run some outreach, get results that are too slow and too inconsistent to rely on. So they stop.</p>
+      <p class="body-text">The problem is <strong>LinkedIn didn't stop working</strong>. Their competitors didn't stop either.</p>
+      <p class="body-text">The issue was never LinkedIn. It was that they were trying to figure out a complex system on top of running an actual business. That's not a discipline problem. That's a bandwidth problem.</p>
+      <div class="highlight-block">
+        <p>Most LinkedIn advice tells you to post every day or hands you a template library. Neither works long term. What's killing your LinkedIn isn't a content problem. It's a system problem. And every business has a different one.</p>
+      </div>
+      <p class="body-text">Generic templates don't find it. A 60-minute audit does.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what-you-get">
+  <div class="container-wide">
+    <div class="fade-in">
+      <p class="section-label">What You Get</p>
+      <h2 class="section-title">Everything delivered in <em>one session.</em></h2>
+    </div>
+    <div class="deliverables-grid fade-in">
+      <div class="deliverable-card">
+        <div class="deliverable-num">01</div>
+        <div class="deliverable-title">LinkedIn Conversion Audit</div>
+        <div class="deliverable-desc">We go through your profile, content, and outreach together and find exactly what's stopping your ideal clients from converting when they land on your page.</div>
+        <div class="deliverable-value">Value: $500</div>
+      </div>
+      <div class="deliverable-card">
+        <div class="deliverable-num">02</div>
+        <div class="deliverable-title">Personalized Revenue Roadmap</div>
+        <div class="deliverable-desc">A written document delivered at the end of the session. The content approach, the outreach setup, and a realistic number of calls you can expect in the first 30 days. A document, not a list of suggestions.</div>
+        <div class="deliverable-value">Value: $1,000</div>
+      </div>
+      <div class="deliverable-card">
+        <div class="bonus-tag">Founding Member Bonus</div>
+        <div class="deliverable-title">Custom LinkedIn Content Engine</div>
+        <div class="deliverable-desc">The same AI tool we use internally with our DFY clients. Built out and personalized to your brand voice, your niche, your offer, and your ICP. Generates LinkedIn posts, warm DM scripts, and content ideas on demand — all in your voice.</div>
+        <div class="deliverable-value">Value: $2,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE STACK -->
+<section class="value-stack">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">The Numbers</p>
+      <h2 class="section-title">$3,500 in value.<br><em>$500 to get in.</em></h2>
+      <div class="stack-table">
+        <div class="stack-row">
+          <span class="stack-row-label">LinkedIn Conversion Audit</span>
+          <span class="stack-row-value">$500</span>
+        </div>
+        <div class="stack-row">
+          <span class="stack-row-label">Personalized Revenue Roadmap</span>
+          <span class="stack-row-value">$1,000</span>
+        </div>
+        <div class="stack-row">
+          <span class="stack-row-label">Custom LinkedIn Content Engine (Founding Member Bonus)</span>
+          <span class="stack-row-value">$2,000</span>
+        </div>
+        <div class="stack-row total">
+          <span class="stack-row-label">Your Investment Today</span>
+          <span class="stack-row-value">$500</span>
+        </div>
+      </div>
+      <p class="price-note">This is founding member pricing. <strong>Once this launch closes, the price increases and the Content Engine bonus is removed.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="container-wide">
+    <div class="fade-in">
+      <p class="section-label">Proof</p>
+      <h2 class="section-title">What happens when the <em>system is built right.</em></h2>
+    </div>
+    <div class="testimonials-grid fade-in">
+      <div class="testimonial-card">
+        <div class="testimonial-result">$50,000+</div>
+        <div class="testimonial-timeline">First 60 Days</div>
+        <div class="testimonial-body">Came to us burned by every other LinkedIn service, posting content that produced nothing. We built the system from scratch. 80+ high-intent appointments booked and $50K+ closed. LinkedIn became his number one lead source. He now spends zero time on it.</div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">Eduardo Middleton</div>
+        <div class="testimonial-company">E.M Consulting</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-result">7 Calls</div>
+        <div class="testimonial-timeline">From the First Post — Day 7</div>
+        <div class="testimonial-body">Had tried outreach and was getting zero results back. In the first 7 days: 7 sales calls booked from a single post and outreach running at a 30% reply rate. One post. Seven calls. First week.</div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">James Moran</div>
+        <div class="testimonial-company">VCIntros</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-result">$25,000</div>
+        <div class="testimonial-timeline">30 Days — 200 Followers</div>
+        <div class="testimonial-body">100 connections, never posted a single time. In 30 days: 2 retainer clients closed and $25,000 generated. 10x return on investment in the first month.</div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-name">Darrio Dean</div>
+        <div class="testimonial-company">Independent Consultant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="container">
+    <div class="guarantee-box fade-in">
+      <div class="guarantee-icon">🛡</div>
+      <div>
+        <h3 class="guarantee-title">The 7-Day Guarantee</h3>
+        <p class="guarantee-body">Go through the audit. Get your roadmap. Receive your content engine. If you genuinely don't feel like you now know exactly what's broken and exactly what to build, message us within 7 days and we'll refund you in full. No conditions. No hoops. Because once you see what's actually stopping your LinkedIn from converting, you'll understand why most people spend months posting and wondering why nothing moves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="who">
+  <div class="container-wide">
+    <div class="fade-in">
+      <p class="section-label">Who This Is For</p>
+      <h2 class="section-title">Right for you. Or <em>clearly not.</em></h2>
+    </div>
+    <div class="who-grid fade-in">
+      <div class="who-box yes">
+        <div class="who-box-title">This is for you if</div>
+        <div class="who-item">You have a working offer and a working business</div>
+        <div class="who-item">You've tried LinkedIn and results were too slow or inconsistent</div>
+        <div class="who-item">You want someone to look at your specific situation, not give generic advice</div>
+        <div class="who-item">You're ready to add a second pipeline that runs without you</div>
+        <div class="who-item">You want a system built for your business, not a template</div>
+      </div>
+      <div class="who-box no">
+        <div class="who-box-title">This is not for you if</div>
+        <div class="who-item">You're still figuring out your offer or who you serve</div>
+        <div class="who-item">You want to learn how to do LinkedIn yourself</div>
+        <div class="who-item">You're looking for general marketing advice</div>
+        <div class="who-item">You want a quick fix with no system behind it</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="final-cta-title fade-in">Every week you wait is a week your competitors <em>aren't.</em></h2>
+    <p class="final-cta-sub fade-in">The system takes 30 days to start producing. The best time to build it was 6 months ago. The second best time is now.</p>
+    <div class="cta-group fade-in">
+      <a href="https://calendly.com/timi-inboundleads/dmand-demo" target="_blank" class="btn-primary">
+        Secure Your Founding Member Spot <span class="btn-arrow">→</span>
+      </a>
+      <p class="cta-small-text">$500 one-time · 60 minutes · <span>Founding member pricing — limited spots</span></p>
+      <p class="cta-small-text">7-day money back guarantee · No conditions</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
